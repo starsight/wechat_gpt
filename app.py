@@ -21,6 +21,9 @@ default_reply = config.default_reply
 def index():
     return jsonify({'code': 200, 'data': 'success'})
 
+@app.route('/wenjie', methods=['GET'])
+def index():
+    return jsonify({'code': 200, 'data': 'just test'})
 
 @app.route('/wechat', methods=['GET', 'POST'])
 def wechat():
@@ -50,9 +53,12 @@ def wechat():
             cont=msg["Content"]
             if cont=="清除":
                 clt.clean_usermsg(user)
+                print("清除 log")
                 return make_response(build_text_response(msg, "记忆清除成功"))
             else:
                 message,model=clt.deal_msg(user,cont)
+                print("message: "+message)
+                print("model: "+model)
                 thread = threading.Thread(target=clt.send_text, args=(user, message, model))
                 thread.start()
                 return make_response(build_text_response(msg, default_reply))
