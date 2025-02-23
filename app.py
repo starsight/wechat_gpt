@@ -21,10 +21,6 @@ default_reply = config.default_reply
 def index():
     return jsonify({'code': 200, 'data': 'success'})
 
-@app.route('/wenjie', methods=['GET'])
-def index():
-    return jsonify({'code': 200, 'data': 'just test'})
-
 @app.route('/wechat', methods=['GET', 'POST'])
 def wechat():
     # 微信服务器会发送两种类型的请求，一种是GET请求，一种是POST请求
