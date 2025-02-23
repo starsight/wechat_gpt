@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  opaochat:
+    image: oneperfect/opaochat:latest
+    restart: always
+    container_name: opaochat
+    ports:
+      - "34568:34568"
+    volumes:
+      - ./.env:/app/.env
+      - ./data:/app/data
+    # environment:
+    #   WX_TOKEN: 
+    #   APPID: 
+    #   APPSECRET: 
+    #   CHAT_URL: 
+    #   APIKEY: 
