@@ -53,9 +53,11 @@ class chat_msg:
             'max_tokens': 6000,
             'stream': False,
         }
+        logger.debug("ready to request gpt")
         req=requests.post(url,headers=headers,json=data,timeout=120)
         try:
             rep=req.json()['choices'][0]['message']['content']
+            logger.debug("gpt返回结果 %s",str(rep))
             return rep
         except Exception as e:
             logger.error("gpt请求失败: %s",str(e))
